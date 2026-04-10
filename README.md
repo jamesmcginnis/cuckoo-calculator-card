@@ -1,6 +1,6 @@
 # Cuckoo Calculator Card
 
-A beautiful, Apple-inspired calculator card for Home Assistant that looks and works just like the iPhone Calculator app. Supports writing results to Home Assistant entities, scientific mode, memory functions, keyboard input, and a full visual configuration editor. Optimised for iPhone Dashboards.
+A sleek, dark-glass calculator card for Home Assistant. Supports writing results to Home Assistant entities, scientific mode, memory pill buttons, keyboard input, and a full visual configuration editor. Optimised for iPhone Dashboards.
 
 ![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-blue)
 ![HACS](https://img.shields.io/badge/HACS-Custom-orange)
@@ -14,7 +14,7 @@ A beautiful, Apple-inspired calculator card for Home Assistant that looks and wo
 
 ### Calculator
 ![Calculator](preview1.png)
-*Full Apple-style calculator with dark glass card and colour-coded operator buttons*
+*Dark glass calculator with colour-coded operator buttons and frosted memory pills*
 
 ### Scientific Mode
 ![Scientific Mode](preview2.png)
@@ -29,20 +29,20 @@ A beautiful, Apple-inspired calculator card for Home Assistant that looks and wo
 ## ✨ Features
 
 ### Core
-- 🍏 **Apple-inspired design** — dark glass card with rounded keys, large display and colour-coded operator buttons matching the iOS Calculator aesthetic
+- 🖤 **Dark glass design** — frosted card with rounded keys, large display and colour-coded operator buttons
 - 🔢 **Full arithmetic** — add, subtract, multiply, divide, percentage, sign toggle and decimal input
 - 📺 **Live expression display** — shows the current expression above the main number as you build it
-- 🔄 **AC / C toggle** — automatically switches between All Clear and Clear Entry, exactly like iOS
+- 🔄 **AC / C toggle** — automatically switches between All Clear and Clear Entry
 - ✨ **Active operator highlight** — the selected operator inverts to white-on-accent while waiting for the next operand
-- 📱 **Mobile optimised** — touch-friendly layout designed for iPhone dashboards
+- 📱 **Mobile optimised** — touch-friendly layout designed for phone dashboards
+
+### Memory
+- 🧠 **Memory pill buttons** — mc, mr, m+, m− and ms displayed as frosted-glass pills that sit flush with the card aesthetic
+- 💡 Memory pills highlight automatically when a value is stored
 
 ### Scientific Mode
 - 🧪 **Scientific functions** — sin, cos, tan, log, ln, √, x², 1/x, π and xʸ
 - 🔬 Toggled on or off from the visual editor — hidden by default for a clean look
-
-### Memory
-- 🧠 **Memory functions** — mc, mr, m+, m− and ms
-- 💡 Memory buttons highlight automatically when a value is stored
 
 ### Home Assistant Integration
 - ✏️ **Writes results to HA entities** — optionally push the `=` result to any `input_number` or `number` entity
@@ -110,12 +110,11 @@ type: custom:cuckoo-calculator-card
 ```yaml
 type: custom:cuckoo-calculator-card
 title: Kitchen Calculator       # Optional label shown above the display
-show_title: false               # Whether to show the title
 result_entity: input_number.my_value  # Optional HA entity to write results to
 write_result: true              # Update entity every time = is pressed
 scientific: false               # Show the scientific function row
 haptic: true                    # Haptic feedback on button press (mobile only)
-accent_color: "#FF9F0A"         # Operator button colour (default: iOS orange)
+accent_color: "#FF9F0A"         # Operator button colour
 card_bg: "#1c1c1e"              # Card background colour
 card_bg_opacity: 100            # Background opacity 0–100
 display_text_color: "#ffffff"   # Display number text colour
@@ -126,8 +125,7 @@ button_text_color: "#ffffff"    # Number button label colour
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `title` | string | `''` | Optional label shown above the display |
-| `show_title` | boolean | `false` | Whether to display the title |
+| `title` | string | `''` | Optional label shown above the display; shown automatically when set |
 | `result_entity` | string | `''` | `input_number` or `number` entity to write results to |
 | `write_result` | boolean | `true` | Update the entity every time = is pressed |
 | `scientific` | boolean | `false` | Show the scientific function row |
@@ -137,6 +135,8 @@ button_text_color: "#ffffff"    # Number button label colour
 | `card_bg_opacity` | number | `100` | Background opacity 0–100 |
 | `display_text_color` | string | `#ffffff` | Display number text colour |
 | `button_text_color` | string | `#ffffff` | Number button label colour |
+
+> **Note:** `show_title` has been removed. The title is now shown automatically whenever the `title` field is non-empty.
 
 ---
 
@@ -167,9 +167,23 @@ The entity name and a sync icon are shown as a small badge above the display whe
 
 ---
 
+## 🧠 Memory Pills
+
+The five memory buttons — mc, mr, m+, m− and ms — are displayed as frosted-glass pill buttons that sit between the display and the main keypad. They are visually subdued at rest and brighten on press. The **mc** and **mr** pills highlight to indicate that memory holds a value.
+
+| Button | Function |
+|--------|----------|
+| mc | Clear memory |
+| mr | Recall memory to display |
+| m+ | Add display value to memory |
+| m− | Subtract display value from memory |
+| ms | Store display value to memory |
+
+---
+
 ## 🧪 Scientific Mode
 
-Enable **Scientific Mode** in the visual editor (or set `scientific: true` in YAML) to show an additional row of functions above the memory buttons.
+Enable **Scientific Mode** in the visual editor (or set `scientific: true` in YAML) to show an additional row of functions above the memory pills.
 
 | Button | Function |
 |--------|----------|
@@ -183,20 +197,6 @@ Enable **Scientific Mode** in the visual editor (or set `scientific: true` in YA
 | xʸ | Power (enters operator mode) |
 | π | Inserts π |
 | 1/x | Reciprocal |
-
----
-
-## 🧠 Memory Functions
-
-| Button | Function |
-|--------|----------|
-| mc | Clear memory |
-| mr | Recall memory to display |
-| m+ | Add display value to memory |
-| m− | Subtract display value from memory |
-| ms | Store display value to memory |
-
-The **mr** and **mc** buttons highlight when memory contains a non-zero value.
 
 ---
 
@@ -241,12 +241,12 @@ MIT License — free to use, modify and distribute.
 
 ## 🐦 Why "CUCKOO"?
 
-- **C**lean Apple-style design
+- **C**lean dark-glass design
 - **U**niversal arithmetic support
 - **C**ustomisable colours and layout
 - **K**eyboard and touch input
 - **O**ptional HA entity integration
-- **O**ptimised for iPhone dashboards
+- **O**ptimised for phone dashboards
 
 ---
 
