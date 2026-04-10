@@ -314,29 +314,28 @@ class CuckooCalculatorCard extends HTMLElement {
           <div class="display-value" id="displayValue">0</div>
         </div>
 
-        <!-- Memory row -->
-        <div class="memory-row">
-          <button class="btn btn-mem" id="memClear" title="Memory Clear">mc</button>
-          <button class="btn btn-mem" id="memRecall" title="Memory Recall">mr</button>
-          <button class="btn btn-mem" id="memAdd" title="Memory Add">m+</button>
-          <button class="btn btn-mem" id="memSub" title="Memory Subtract">m−</button>
-          <button class="btn btn-mem" id="memStore" title="Memory Store">ms</button>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- Scientific row (hidden unless enabled) -->
-        <div class="sci-row" id="sciRow">
-          <button class="btn btn-sci" data-sci="sin">sin</button>
-          <button class="btn btn-sci" data-sci="cos">cos</button>
-          <button class="btn btn-sci" data-sci="tan">tan</button>
-          <button class="btn btn-sci" data-sci="sqrt">√</button>
-          <button class="btn btn-sci" data-sci="sq">x²</button>
-          <button class="btn btn-sci" data-sci="log">log</button>
-          <button class="btn btn-sci" data-sci="ln">ln</button>
-          <button class="btn btn-sci" data-sci="pow">xʸ</button>
-          <button class="btn btn-sci" data-sci="pi">π</button>
-          <button class="btn btn-sci" data-sci="inv">1/x</button>
+        <!-- Scientific + memory block (hidden unless scientific enabled) -->
+        <div id="sciBlock" style="display:${cfg.scientific ? 'block' : 'none'}">
+          <div class="sci-row" id="sciRow">
+            <button class="btn btn-sci" data-sci="sin">sin</button>
+            <button class="btn btn-sci" data-sci="cos">cos</button>
+            <button class="btn btn-sci" data-sci="tan">tan</button>
+            <button class="btn btn-sci" data-sci="sqrt">√</button>
+            <button class="btn btn-sci" data-sci="sq">x²</button>
+            <button class="btn btn-sci" data-sci="log">log</button>
+            <button class="btn btn-sci" data-sci="ln">ln</button>
+            <button class="btn btn-sci" data-sci="pow">xʸ</button>
+            <button class="btn btn-sci" data-sci="pi">π</button>
+            <button class="btn btn-sci" data-sci="inv">1/x</button>
+          </div>
+          <div class="memory-row">
+            <button class="btn btn-mem" id="memClear" title="Memory Clear">mc</button>
+            <button class="btn btn-mem" id="memRecall" title="Memory Recall">mr</button>
+            <button class="btn btn-mem" id="memAdd" title="Memory Add">m+</button>
+            <button class="btn btn-mem" id="memSub" title="Memory Subtract">m−</button>
+            <button class="btn btn-mem" id="memStore" title="Memory Store">ms</button>
+          </div>
+          <div class="divider"></div>
         </div>
 
         <!-- Main button grid -->
@@ -704,8 +703,8 @@ class CuckooCalculatorCard extends HTMLElement {
       entityName.textContent = friendlyName;
     }
 
-    const sciRow = root?.getElementById('sciRow');
-    if (sciRow) sciRow.style.display = cfg.scientific ? 'grid' : 'none';
+    const sciBlock = root?.getElementById('sciBlock');
+    if (sciBlock) sciBlock.style.display = cfg.scientific ? 'block' : 'none';
 
     // Num btn colors
     root?.querySelectorAll('.btn-num').forEach(b => {
