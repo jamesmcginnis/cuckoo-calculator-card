@@ -111,7 +111,7 @@ class CuckooCalculatorCard extends HTMLElement {
         }
 
         .calc-title {
-          display: ${cfg.show_title && cfg.title ? 'block' : 'none'};
+          display: ${cfg.title ? 'block' : 'none'};
           font-size: 13px;
           font-weight: 600;
           color: rgba(255,255,255,0.5);
@@ -123,7 +123,7 @@ class CuckooCalculatorCard extends HTMLElement {
 
         /* ── Display ── */
         .display {
-          padding: ${cfg.show_title && cfg.title ? '8px' : '16px'} 24px 8px;
+          padding: ${cfg.title ? '8px' : '16px'} 24px 8px;
           display: flex;
           flex-direction: column;
           align-items: flex-end;
@@ -269,27 +269,30 @@ class CuckooCalculatorCard extends HTMLElement {
           width: 100%;
         }
 
-        /* Memory row */
+        /* Memory row — pill style */
         .memory-row {
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
+          display: flex;
+          align-items: center;
+          justify-content: center;
           gap: 6px;
-          padding: 0 16px 4px;
+          padding: 4px 16px 6px;
         }
         .btn-mem {
-          background: transparent;
-          color: rgba(255,255,255,0.45);
-          border: none;
-          border-radius: 8px;
+          background: rgba(255,255,255,0.07);
+          color: rgba(255,255,255,0.5);
+          border: 1px solid rgba(255,255,255,0.10);
+          border-radius: 20px;
           aspect-ratio: unset;
-          padding: 6px 2px;
-          font-size: 13px;
+          padding: 5px 0;
+          font-size: 12px;
           font-weight: 600;
-          width: 100%;
-          letter-spacing: 0.01em;
+          flex: 1;
+          letter-spacing: 0.02em;
+          transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease, transform 0.08s ease;
+          font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
         }
-        .btn-mem:active { color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); }
-        .btn-mem.mem-has-value { color: rgba(255,255,255,0.7); }
+        .btn-mem:active { background: rgba(255,255,255,0.16); color: #fff; border-color: rgba(255,255,255,0.25); transform: scale(0.95); }
+        .btn-mem.mem-has-value { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.11); border-color: rgba(255,255,255,0.18); }
 
         /* Divider */
         .divider {
@@ -689,7 +692,7 @@ class CuckooCalculatorCard extends HTMLElement {
     const titleEl = root?.getElementById('calcTitle');
     if (titleEl) {
       titleEl.textContent = cfg.title || '';
-      titleEl.style.display = (cfg.show_title && cfg.title) ? 'block' : 'none';
+      titleEl.style.display = cfg.title ? 'block' : 'none';
     }
 
     const entityBadge = root?.getElementById('entityBadge');
@@ -846,14 +849,6 @@ class CuckooCalculatorCardEditor extends HTMLElement {
               <label>Title (optional)</label>
               <input type="text" id="titleInput" placeholder="e.g. Kitchen Calculator" value="${cfg.title || ''}">
             </div>
-            <div class="toggle-list">
-              <div class="toggle-item">
-                <div>
-                  <div class="toggle-label">Show Title</div>
-                </div>
-                <label class="toggle-switch"><input type="checkbox" id="showTitle" ${cfg.show_title ? 'checked' : ''}><span class="toggle-track"></span></label>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -978,7 +973,6 @@ class CuckooCalculatorCardEditor extends HTMLElement {
     // ── Wire up other controls ─────────────────────────────────────
     const root = this.shadowRoot;
     root.getElementById('titleInput').addEventListener('input', e => this._updateConfig('title', e.target.value));
-    root.getElementById('showTitle').addEventListener('change', e => this._updateConfig('show_title', e.target.checked));
     root.getElementById('resultEntity').addEventListener('change', e => this._updateConfig('result_entity', e.target.value));
     root.getElementById('writeResult').addEventListener('change', e => this._updateConfig('write_result', e.target.checked));
     root.getElementById('scientific').addEventListener('change', e => this._updateConfig('scientific', e.target.checked));
