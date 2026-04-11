@@ -51,7 +51,6 @@ A sleek, dark-glass calculator card for Home Assistant. Supports writing results
 ### Input
 - ⌨️ **Keyboard support** — type numbers and operators directly; Backspace deletes; Escape clears; Enter evaluates
 - 👆 **Swipe down to clear** — swipe down on the display to trigger All Clear on touch screens
-- 📳 **Haptic feedback** — vibrates on button press on supported mobile devices (can be disabled)
 
 ### Configuration
 - ⚙️ **Full visual editor** — colour pickers, entity selector and toggles — no YAML required
@@ -113,7 +112,6 @@ title: Kitchen Calculator       # Optional label shown above the display
 result_entity: input_number.my_value  # Optional HA entity to write results to
 write_result: true              # Update entity every time = is pressed
 scientific: false               # Show the scientific function row
-haptic: true                    # Haptic feedback on button press (mobile only)
 accent_color: "#FF9F0A"         # Operator button colour
 card_bg: "#1c1c1e"              # Card background colour
 card_bg_opacity: 100            # Background opacity 0–100
@@ -129,7 +127,6 @@ button_text_color: "#ffffff"    # Number button label colour
 | `result_entity` | string | `''` | `input_number` or `number` entity to write results to |
 | `write_result` | boolean | `true` | Update the entity every time = is pressed |
 | `scientific` | boolean | `false` | Show the scientific function row |
-| `haptic` | boolean | `true` | Haptic feedback on button press (mobile) |
 | `accent_color` | string | `#FF9F0A` | Operator button colour |
 | `card_bg` | string | `#1c1c1e` | Card background colour |
 | `card_bg_opacity` | number | `100` | Background opacity 0–100 |
@@ -212,9 +209,6 @@ Enable **Scientific Mode** in the visual editor (or set `scientific: true` in YA
 **Keyboard input not working**
 - Click anywhere on the card first to focus it, then type
 
-**Haptic feedback not working**
-- Haptic feedback requires a browser and device that support the `navigator.vibrate` API — most Android browsers support this; iOS Safari does not
-
 **Scientific mode not showing**
 - Enable it in the visual editor under **Options → Scientific Mode**, or set `scientific: true` in your YAML config
 
@@ -236,17 +230,6 @@ Built to match the visual style and editor patterns of [Crow Media Player Card](
 ## 📄 License
 
 MIT License — free to use, modify and distribute.
-
----
-
-## 🐦 Why "CUCKOO"?
-
-- **C**lean dark-glass design
-- **U**niversal arithmetic support
-- **C**ustomisable colours and layout
-- **K**eyboard and touch input
-- **O**ptional HA entity integration
-- **O**ptimised for phone dashboards
 
 ---
 
