@@ -16,7 +16,6 @@ A sleek, dark-glass calculator card for Home Assistant. Supports writing results
 - **Scientific mode** — sin, cos, tan, log, ln, √, x², 1/x, π and xʸ; toggled on or off from the visual editor
 - **Writes results to HA entities** — optionally push the `=` result to any `input_number` or `number` entity
 - **Keyboard support** — type numbers and operators from a full keyboard; Backspace deletes; Escape clears; Enter evaluates
-- **Haptic feedback** — vibrates on button press on supported mobile devices (can be disabled)
 - **Swipe down to clear** — swipe down on the display to trigger All Clear on touch screens
 - **Live expression display** — shows the current expression above the main number as you build it
 - **AC / C toggle** — automatically switches between All Clear and Clear Entry
@@ -28,7 +27,3 @@ A sleek, dark-glass calculator card for Home Assistant. Supports writing results
 ```yaml
 type: custom:cuckoo-calculator-card
 ```
-
-## Credits
-
-Built to match the visual style and editor patterns of [Crow Media Player Card](https://github.com/jamesmcginnis/crow-media-player-card).
