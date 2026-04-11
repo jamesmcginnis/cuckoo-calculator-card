@@ -33,7 +33,6 @@ class CuckooCalculatorCard extends HTMLElement {
       card_bg_opacity: 100,
       show_title: false,
       write_result: true,
-      haptic: true,
       scientific: false,
     };
   }
@@ -49,7 +48,6 @@ class CuckooCalculatorCard extends HTMLElement {
       card_bg_opacity: 100,
       show_title: false,
       write_result: true,
-      haptic: true,
       scientific: false,
       ...config,
     };
@@ -432,7 +430,6 @@ class CuckooCalculatorCard extends HTMLElement {
   _pressEffect(btn) {
     btn.classList.add('pressed');
     setTimeout(() => btn.classList.remove('pressed'), 150);
-    if (this._config?.haptic && navigator.vibrate) navigator.vibrate(10);
   }
 
   // ── Calculator logic ──────────────────────────────────────────────
@@ -889,13 +886,6 @@ class CuckooCalculatorCardEditor extends HTMLElement {
                 </div>
                 <label class="toggle-switch"><input type="checkbox" id="scientific" ${cfg.scientific ? 'checked' : ''}><span class="toggle-track"></span></label>
               </div>
-              <div class="toggle-item">
-                <div>
-                  <div class="toggle-label">Haptic Feedback</div>
-                  <div class="toggle-hint">Vibrate on button press (mobile only)</div>
-                </div>
-                <label class="toggle-switch"><input type="checkbox" id="haptic" ${cfg.haptic !== false ? 'checked' : ''}><span class="toggle-track"></span></label>
-              </div>
             </div>
           </div>
         </div>
@@ -975,7 +965,6 @@ class CuckooCalculatorCardEditor extends HTMLElement {
     root.getElementById('resultEntity').addEventListener('change', e => this._updateConfig('result_entity', e.target.value));
     root.getElementById('writeResult').addEventListener('change', e => this._updateConfig('write_result', e.target.checked));
     root.getElementById('scientific').addEventListener('change', e => this._updateConfig('scientific', e.target.checked));
-    root.getElementById('haptic').addEventListener('change', e => this._updateConfig('haptic', e.target.checked));
     const opSlider = root.getElementById('bgOpacity');
     const opVal    = root.getElementById('opacityVal');
     opSlider.addEventListener('input', e => {
